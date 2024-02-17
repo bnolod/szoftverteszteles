@@ -1,1 +1,1 @@
-console.log("fasz")
+import "./firebase.js"
