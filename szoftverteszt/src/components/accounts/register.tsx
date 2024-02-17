@@ -4,7 +4,7 @@ import "firebase/auth"
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
-
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 
 export function RegisterScreen() {
@@ -21,9 +21,21 @@ function Register(event: any) {
     .then((userCredential) => {
         console.log(userCredential);
         console.log("Sikeres regisztráció");
-        setError("Successful registration. You will be redirected to the login page.")
+        setError("Successful registration.")
         setTimeout(() => {
-            navigate("/login")
+            // navigate("/welcome")
+
+                signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    console.log(userCredential);
+                    setTimeout(() => {
+                        navigate("/welcome")
+                    }, 3000);
+                }).catch((error) => {
+                    console.log(error);
+                    setError("Invalid email or password")
+        
+                });
         }, 3000);
     }).catch((error) => {
         console.log(error);

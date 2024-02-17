@@ -1,17 +1,24 @@
 import {} from "react"
 import{useEffect, useState} from 'react';
 import { Link } from 'react-router-dom'
-import AuthDetails from '../AuthDetails'
+
 import { auth } from "../../firebase"; 
 import { SignOut } from "../accounts/signOut";
 import {User, onAuthStateChanged} from "firebase/auth"
+
+import Popup from 'reactjs-popup';
+// import 'reactjs-popup/dist/index.css';
+
+
+import {LoginScreen} from "../accounts/login"
+import {RegisterScreen} from "../accounts/register"
 
 
 export function Buttons() {
     console.log(auth)
     const [authUser, setAuthUser] = useState<User | null>(null);
     useEffect(() => {
-        const listener = onAuthStateChanged(auth,(user) => {
+         onAuthStateChanged(auth,(user) => {
             if (user) {
                 setAuthUser(user);
             } else {
@@ -24,7 +31,7 @@ export function Buttons() {
         <div>
         <div className="buttons">
             
-   
+
             {authUser != null
                 ?
              <div>
@@ -34,13 +41,20 @@ export function Buttons() {
              </div>
                 : 
                <div>
-                <Link className="button" id="login" to="/login">Login</Link>
+                {/* <Link className="button" id="login" to="/login">Login</Link>
+
                 <br />
-                <Link className="button" id="register" to="/register">Register</Link>
+                <Link className="button" id="register" to="/register">Register</Link> */}
+                <Popup trigger={<button>Register</button>} position="right center">
+                    <RegisterScreen/>
+                </Popup>
+                <Popup trigger={<button>Sign in</button>}>
+                    <LoginScreen/>
+                </Popup>
                 </div> 
 
             }
-            <AuthDetails/>
+            
         </div>
         </div>
 
