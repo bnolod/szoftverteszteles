@@ -1,0 +1,38 @@
+@import '../variables.scss';
+@import '../index.scss';
+
+
+.mainpage {
+    height: 100%;
+    width:100%;
+    // background:url(https://www.mindmegette.hu/images/360/Social/lead_Social_banan-szupergyumolcs-3.jpg);
+    // background-size: cover;
+    // background-position: center;
+    background-color: $color-bg;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .maincontent {
+        background: $color-white;
+        padding: 2rem;
+        border-radius: 1rem;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .description {
+            color: $color-white;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .buttons, .buttons div {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            flex-direction: column;
+        }
+        
+    
+    }
+}
