@@ -1,4 +1,4 @@
-import './App.scss'
+
 import { Main as Welcome } from './pages/welcome'
 import { Login } from './pages/login'
 import { Register } from './pages/register'
@@ -8,6 +8,11 @@ import { Main } from './pages/mainPage';
 import { auth } from "./firebase"; 
 import {User, onAuthStateChanged} from "firebase/auth"
 import{useEffect, useState} from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.scss';
+
+
+import {Messages} from "./components/messages/index"
 
 function App() {
 
@@ -30,6 +35,9 @@ function App() {
 
       {/* only on auth */}
         <Route path="*" element={authUser != null ? <Main /> : <Welcome />} />
+        <Route path="messages" element={<Messages />} />
+
+        
         
         
       </Routes>
